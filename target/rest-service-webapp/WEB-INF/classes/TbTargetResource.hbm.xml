@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-1-2 22:34:23 by Hibernate Tools 3.6.0.Final -->
+<hibernate-mapping>
+    <class name="com.yaotao.rest.tb.TbTargetResource" table="tb_target_resource" schema="iot">
+        <composite-id name="id" class="com.yaotao.rest.tb.TbTargetResourceId">
+            <key-property name="eventId" type="string">
+                <column name="event_id" length="12" />
+            </key-property>
+            <key-property name="resourceId" type="string">
+                <column name="resource_id" length="20" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="tbEvent" class="com.yaotao.rest.tb.TbEvent" update="false" insert="false" fetch="select">
+            <column name="event_id" length="12" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tbAccessCode" class="com.yaotao.rest.tb.TbAccessCode" fetch="select">
+            <column name="access_code" length="10" not-null="true" />
+            <column name="tenant_id" length="48" />
+        </many-to-one>
+        <many-to-one name="tbResourceId" class="com.yaotao.rest.tb.TbResourceId" update="false" insert="false" fetch="select">
+            <column name="resource_id" length="20" not-null="true" />
+        </many-to-one>
+        <property name="notificationLocation" type="string">
+            <column name="notification_location" length="1902" />
+        </property>
+        <property name="awakeLocation" type="string">
+            <column name="awake_location" length="1902" />
+        </property>
+        <property name="notificationPathType" type="string">
+            <column name="notification_path_type" length="8" />
+        </property>
+        <property name="awakePathType" type="string">
+            <column name="awake_path_type" length="8" />
+        </property>
+        <property name="reserved01" type="string">
+            <column name="reserved01" length="256" />
+        </property>
+        <property name="reserved02" type="string">
+            <column name="reserved02" length="256" />
+        </property>
+        <property name="reserved03" type="string">
+            <column name="reserved03" length="256" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-1-2 22:34:23 by Hibernate Tools 3.6.0.Final -->
+<hibernate-mapping>
+    <class name="com.yaotao.rest.tb.TbIpfilterUser" table="tb_ipfilter_user" schema="iot">
+        <id name="ipfilterId" type="int">
+            <column name="ipfilter_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="ipaddressStart" type="serializable">
+            <column name="ipaddress_start" not-null="true" />
+        </property>
+        <property name="ipaddressEnd" type="serializable">
+            <column name="ipaddress_end" />
+        </property>
+        <property name="oldIpaddressStart" type="serializable">
+            <column name="old_ipaddress_start" />
+        </property>
+        <property name="oldIpaddressEnd" type="serializable">
+            <column name="old_ipaddress_end" />
+        </property>
+        <property name="comment" type="string">
+            <column name="comment" length="256" />
+        </property>
+        <property name="loginFlag" type="java.lang.Boolean">
+            <column name="login_flag" />
+        </property>
+        <property name="reserved01" type="string">
+            <column name="reserved01" length="256" />
+        </property>
+        <property name="reserved02" type="string">
+            <column name="reserved02" length="256" />
+        </property>
+        <property name="reserved03" type="string">
+            <column name="reserved03" length="256" />
+        </property>
+        <property name="addedDate" type="timestamp">
+            <column name="added_date" length="35" not-null="true" />
+        </property>
+        <property name="modifiedDate" type="timestamp">
+            <column name="modified_date" length="35" />
+        </property>
+        <property name="deleteFlag" type="java.lang.Boolean">
+            <column name="delete_flag" />
+        </property>
+        <set name="tbIpfilterUserRelations" table="tb_ipfilter_user_relation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ipfilter_id" not-null="true" />
+            </key>
+            <one-to-many class="com.yaotao.rest.tb.TbIpfilterUserRelation" />
+        </set>
+    </class>
+</hibernate-mapping>

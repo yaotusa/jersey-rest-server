@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-1-2 22:34:23 by Hibernate Tools 3.6.0.Final -->
+<hibernate-mapping>
+    <class name="com.yaotao.rest.tb.TbVersion" table="tb_version" schema="iot">
+        <composite-id name="id" class="com.yaotao.rest.tb.TbVersionId">
+            <key-property name="version" type="string">
+                <column name="version" length="16" />
+            </key-property>
+            <key-property name="addedDate" type="timestamp">
+                <column name="added_date" length="35" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

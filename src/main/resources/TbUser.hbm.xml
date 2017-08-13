@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-1-2 22:34:23 by Hibernate Tools 3.6.0.Final -->
+<hibernate-mapping>
+    <class name="com.yaotao.rest.tb.TbUser" table="tb_user" schema="iot">
+        <id name="userId" type="string">
+            <column name="user_id" length="254" />
+            <generator class="assigned" />
+        </id>
+        <property name="customerId" type="string">
+            <column name="customer_id" length="6" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="128" not-null="true" />
+        </property>
+        <property name="userName" type="string">
+            <column name="user_name" length="64" />
+        </property>
+        <property name="comment" type="string">
+            <column name="comment" length="256" />
+        </property>
+        <property name="authority" type="int">
+            <column name="authority" not-null="true" />
+        </property>
+        <property name="reserved01" type="string">
+            <column name="reserved01" length="256" />
+        </property>
+        <property name="reserved02" type="string">
+            <column name="reserved02" length="256" />
+        </property>
+        <property name="reserved03" type="string">
+            <column name="reserved03" length="256" />
+        </property>
+        <property name="addedDate" type="timestamp">
+            <column name="added_date" length="35" not-null="true" />
+        </property>
+        <property name="modifiedDate" type="timestamp">
+            <column name="modified_date" length="35" />
+        </property>
+        <set name="tbIpfilterUserRelations" table="tb_ipfilter_user_relation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" length="254" not-null="true" />
+            </key>
+            <one-to-many class="com.yaotao.rest.tb.TbIpfilterUserRelation" />
+        </set>
+        <set name="tbTenants" table="tb_user_tenant_relationship" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" length="254" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.yaotao.rest.tb.TbTenant">
+                <column name="tenant_id" length="10" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

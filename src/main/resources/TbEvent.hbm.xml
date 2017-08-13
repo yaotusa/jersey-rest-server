@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-1-2 22:34:23 by Hibernate Tools 3.6.0.Final -->
+<hibernate-mapping>
+    <class name="com.yaotao.rest.tb.TbEvent" table="tb_event" schema="iot">
+        <id name="eventId" type="string">
+            <column name="event_id" length="12" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tbTenant" class="com.yaotao.rest.tb.TbTenant" fetch="select">
+            <column name="tenant_id" length="10" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" length="64" />
+        </property>
+        <property name="comment" type="string">
+            <column name="comment" length="256" />
+        </property>
+        <property name="conditionCreate" type="boolean">
+            <column name="condition_create" not-null="true" />
+        </property>
+        <property name="conditionRead" type="boolean">
+            <column name="condition_read" not-null="true" />
+        </property>
+        <property name="conditionUpdate" type="boolean">
+            <column name="condition_update" not-null="true" />
+        </property>
+        <property name="conditionDelete" type="boolean">
+            <column name="condition_delete" not-null="true" />
+        </property>
+        <property name="notifyStartTime" type="string">
+            <column name="notify_start_time" length="20" />
+        </property>
+        <property name="notifyEndTime" type="string">
+            <column name="notify_end_time" length="20" />
+        </property>
+        <property name="notifyNumericValue" type="java.lang.Integer">
+            <column name="notify_numeric_value" />
+        </property>
+        <property name="notifyFloatValue" type="big_decimal">
+            <column name="notify_float_value" precision="10" scale="5" />
+        </property>
+        <property name="notifyNumericCondition" type="java.lang.Integer">
+            <column name="notify_numeric_condition" />
+        </property>
+        <property name="notifyStringValue" type="string">
+            <column name="notify_string_value" length="128" />
+        </property>
+        <property name="notifyStringCondition" type="java.lang.Integer">
+            <column name="notify_string_condition" />
+        </property>
+        <property name="stopFlag" type="boolean">
+            <column name="stop_flag" not-null="true" />
+        </property>
+        <property name="awakeNumericValue" type="java.lang.Integer">
+            <column name="awake_numeric_value" />
+        </property>
+        <property name="awakeFloatValue" type="big_decimal">
+            <column name="awake_float_value" precision="10" scale="5" />
+        </property>
+        <property name="awakeNumericCondition" type="java.lang.Integer">
+            <column name="awake_numeric_condition" />
+        </property>
+        <property name="awakeStringValue" type="string">
+            <column name="awake_string_value" length="128" />
+        </property>
+        <property name="awakeStringCondition" type="java.lang.Integer">
+            <column name="awake_string_condition" />
+        </property>
+        <property name="action" type="int">
+            <column name="action" not-null="true" />
+        </property>
+        <property name="reserved01" type="string">
+            <column name="reserved01" length="256" />
+        </property>
+        <property name="reserved02" type="string">
+            <column name="reserved02" length="256" />
+        </property>
+        <property name="reserved03" type="string">
+            <column name="reserved03" length="256" />
+        </property>
+        <set name="tbTargetResources" table="tb_target_resource" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="event_id" length="12" not-null="true" />
+            </key>
+            <one-to-many class="com.yaotao.rest.tb.TbTargetResource" />
+        </set>
+        <one-to-one name="tbActionApi" class="com.yaotao.rest.tb.TbActionApi"></one-to-one>
+        <one-to-one name="tbActionEmail" class="com.yaotao.rest.tb.TbActionEmail"></one-to-one>
+    </class>
+</hibernate-mapping>

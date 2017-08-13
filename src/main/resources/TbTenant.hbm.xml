@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-1-2 22:34:23 by Hibernate Tools 3.6.0.Final -->
+<hibernate-mapping>
+    <class name="com.yaotao.rest.tb.TbTenant" table="tb_tenant" schema="iot">
+        <id name="tenantId" type="string">
+            <column name="tenant_id" length="10" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tbManagementDataDbServer" class="com.yaotao.rest.tb.TbManagementDataDbServer" fetch="select">
+            <column name="db_server_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tbCustomer" class="com.yaotao.rest.tb.TbCustomer" fetch="select">
+            <column name="customer_id" length="6" not-null="true" />
+        </many-to-one>
+        <property name="tenantName" type="string">
+            <column name="tenant_name" length="32" not-null="true" unique="true" />
+        </property>
+        <property name="selectionScreenComment" type="string">
+            <column name="selection_screen_comment" length="256" />
+        </property>
+        <property name="comment" type="string">
+            <column name="comment" length="256" />
+        </property>
+        <property name="safaiaId" type="string">
+            <column name="safaia_id" length="256" />
+        </property>
+        <property name="accountingId" type="string">
+            <column name="accounting_id" length="15" not-null="true" unique="true" />
+        </property>
+        <property name="serviceType" type="int">
+            <column name="service_type" not-null="true" />
+        </property>
+        <property name="serviceTypeModifiedDate" type="timestamp">
+            <column name="service_type_modified_date" length="35" />
+        </property>
+        <property name="freeApiSize" type="java.lang.Integer">
+            <column name="free_api_size" />
+        </property>
+        <property name="freeStorageSize" type="java.lang.Integer">
+            <column name="free_storage_size" />
+        </property>
+        <property name="enhancingSupport" type="boolean">
+            <column name="enhancing_support" not-null="true" />
+        </property>
+        <property name="accountStartDate" type="timestamp">
+            <column name="account_start_date" length="35" />
+        </property>
+        <property name="accountEndDate" type="timestamp">
+            <column name="account_end_date" length="35" />
+        </property>
+        <property name="reserved01" type="string">
+            <column name="reserved01" length="256" />
+        </property>
+        <property name="reserved02" type="string">
+            <column name="reserved02" length="256" />
+        </property>
+        <property name="reserved03" type="string">
+            <column name="reserved03" length="256" />
+        </property>
+        <property name="addedDate" type="timestamp">
+            <column name="added_date" length="35" not-null="true" />
+        </property>
+        <property name="modifiedDate" type="timestamp">
+            <column name="modified_date" length="35" />
+        </property>
+        <set name="tbAccessCodes" table="tb_access_code" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tenant_id" length="10" not-null="true" />
+            </key>
+            <one-to-many class="com.yaotao.rest.tb.TbAccessCode" />
+        </set>
+        <set name="tbUsers" table="tb_user_tenant_relationship" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tenant_id" length="10" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.yaotao.rest.tb.TbUser">
+                <column name="user_id" length="254" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="tbEvents" table="tb_event" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tenant_id" length="10" />
+            </key>
+            <one-to-many class="com.yaotao.rest.tb.TbEvent" />
+        </set>
+        <one-to-one name="tbTenantCommon" class="com.yaotao.rest.tb.TbTenantCommon"></one-to-one>
+        <set name="tbResources" table="tb_resource" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tenant_id" length="10" not-null="true" />
+            </key>
+            <one-to-many class="com.yaotao.rest.tb.TbResource" />
+        </set>
+    </class>
+</hibernate-mapping>

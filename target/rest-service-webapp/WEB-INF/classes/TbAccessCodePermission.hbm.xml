@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-1-2 22:34:23 by Hibernate Tools 3.6.0.Final -->
+<hibernate-mapping>
+    <class name="com.yaotao.rest.tb.TbAccessCodePermission" table="tb_access_code_permission" schema="iot">
+        <composite-id name="id" class="com.yaotao.rest.tb.TbAccessCodePermissionId">
+			<key-property name="resourceId" type="string">
+				<column name="resource_id" length="20" />
+			</key-property>
+			<key-property name="accessCode" type="string">
+				<column name="access_code" length="10" />
+			</key-property>
+		</composite-id>
+        <many-to-one name="tbAccessCode" class="com.yaotao.rest.tb.TbAccessCode" update="false" insert="false" fetch="select">
+			<column name="access_code" length="10" not-null="true" />
+			<column name="tenant_id" length="48" not-null="true" />
+		</many-to-one>
+        <many-to-one name="tbResourceId" class="com.yaotao.rest.tb.TbResourceId" update="false" insert="false" fetch="select">
+			<column name="resource_id" length="20" not-null="true" />
+		</many-to-one>
+		<many-to-one name="tbTenant" class="com.yaotao.rest.tb.TbTenant" fetch="select">
+			<column name="tenant_id" length="10" not-null="true" />
+		</many-to-one>
+		<property name="readPermission" type="boolean">
+			<column name="read_permission" not-null="true" />
+		</property>
+		<property name="updatePermission" type="boolean">
+			<column name="update_permission" not-null="true" />
+		</property>
+		<property name="addedDate" type="timestamp">
+			<column name="added_date" length="35" not-null="true" />
+		</property>
+		<property name="modifiedDate" type="timestamp">
+			<column name="modified_date" length="35" />
+		</property>
+		<property name="reserved01" type="string">
+			<column name="reserved01" length="256" />
+		</property>
+		<property name="reserved02" type="string">
+			<column name="reserved02" length="256" />
+		</property>
+		<property name="reserved03" type="string">
+			<column name="reserved03" length="256" />
+		</property>
+        <sql-insert check="none">insert into iot.tb_access_code_permission (tenant_id, read_permission, update_permission, added_date, modified_date, reserved01, reserved02, reserved03, resource_id, access_code) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)</sql-insert>
+	</class>
+</hibernate-mapping>

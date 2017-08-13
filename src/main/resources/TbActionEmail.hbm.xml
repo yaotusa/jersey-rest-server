@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-1-2 22:34:23 by Hibernate Tools 3.6.0.Final -->
+<hibernate-mapping>
+    <class name="com.yaotao.rest.tb.TbActionEmail" table="tb_action_email" schema="iot">
+        <id name="eventId" type="string">
+            <column name="event_id" length="12" />
+            <generator class="foreign">
+                <param name="property">tbEvent</param>
+            </generator>
+        </id>
+        <one-to-one name="tbEvent" class="com.yaotao.rest.tb.TbEvent" constrained="true"></one-to-one>
+        <property name="tenantId" type="string">
+            <column name="tenant_id" length="10" />
+        </property>
+        <property name="emailAddress" type="string">
+            <column name="email_address" length="256" not-null="true" />
+        </property>
+        <property name="emailSubject" type="string">
+            <column name="email_subject" length="256" />
+        </property>
+        <property name="emailBody" type="string">
+            <column name="email_body" length="140" />
+        </property>
+        <property name="reserved01" type="string">
+            <column name="reserved01" length="256" />
+        </property>
+        <property name="reserved02" type="string">
+            <column name="reserved02" length="256" />
+        </property>
+        <property name="reserved03" type="string">
+            <column name="reserved03" length="256" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-1-2 22:34:23 by Hibernate Tools 3.6.0.Final -->
+<hibernate-mapping>
+    <class name="com.yaotao.rest.tb.TbAccessCodeResult" table="tb_access_code_result" schema="iot">
+        <composite-id name="id" class="com.yaotao.rest.tb.TbAccessCodeResultId">
+            <key-property name="tenantId" type="string">
+                <column name="tenant_id" length="10" />
+            </key-property>
+            <key-property name="userId" type="string">
+                <column name="user_id" length="254" />
+            </key-property>
+            <key-property name="number" type="int">
+                <column name="number" />
+            </key-property>
+            <key-property name="accessCode" type="string">
+                <column name="access_code" length="48" />
+            </key-property>
+            <key-property name="accessCodeName" type="string">
+                <column name="access_code_name" length="32" />
+            </key-property>
+            <key-property name="status" type="string">
+                <column name="status" length="2" />
+            </key-property>
+            <key-property name="errMessage" type="string">
+                <column name="err_message" length="1024" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>
